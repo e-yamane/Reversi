@@ -118,7 +118,7 @@ public class Board implements Cloneable {
 		setState(p, getState(p).reverse());
 	}
 
-	private void setState(Point p, BoardState state) {
+	void setState(Point p, BoardState state) {
 		board[p.y][p.x] = state;
 	}
 
