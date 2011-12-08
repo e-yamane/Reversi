@@ -7,18 +7,28 @@ public class Reversi {
 	final Player white;
 	final Board board;
 	final Reporter reporter;
+	final long blackLimitTime;
+	final long whiteLimitTime;
 	int   count = 0;
 	BoardState current;
+	
+	static final long DEFAULT_LIMIT_TIME = 2000;
 	
 	public Reversi(Player black, Player white) {
 		this(black, white, new DefaultReporter());
 	}
 	
 	public Reversi(Player black, Player white, Reporter reporter) {
+		this(black, DEFAULT_LIMIT_TIME, white, DEFAULT_LIMIT_TIME, reporter);
+	}
+	
+	public Reversi(Player black, long blackLimitTime, Player white, long whiteLimitTime, Reporter reporter) {
 		this.black = black;
 		this.white = white;
 		this.board = new Board();
 		this.reporter = reporter;
+		this.blackLimitTime = blackLimitTime;
+		this.whiteLimitTime = whiteLimitTime;
 	}
 	
 	public Result fight() {
@@ -28,6 +38,7 @@ public class Reversi {
 			trying(BoardState.BLACK);
 			result = new Result(this);
 		} catch(Exception ex) {
+			ex.printStackTrace();
 			result = new Result(this, ex);
 		}
 		reporter.finish(result);
@@ -58,7 +69,7 @@ public class Reversi {
 			RunnableImpl run = new RunnableImpl(getTargetPlayer(state));
 			try {
 				new Thread(run).start();
-				Thread.sleep(2000);
+				Thread.sleep(getLimitTime());
 				System.out.println("タイムアウト！！");
 				throw new RuntimeException("タイムアウト");
 			} catch (InterruptedException e) {
@@ -71,6 +82,14 @@ public class Reversi {
 		} else {
 			skip(state);
 			return false;
+		}
+	}
+
+	long getLimitTime() {
+		if(current == BoardState.BLACK) {
+			return blackLimitTime;
+		} else {
+			return whiteLimitTime;
 		}
 	}
 
@@ -133,18 +152,18 @@ public class Reversi {
 
 		@Override
 		public void put(Board board, int number, Player player, Point p) {
-			System.out.println(String.format("第%d手目(%s)[%s] ", number, player.name, p));
+			System.out.println(String.format("第%d手目(%s)[%s] ", number, player.getName(), p));
 			System.out.println(dumpBoard(board));
 		}
 
 		@Override
 		public void skip(Board board, Player skipper) {
-			System.out.println(String.format("%sは置く場所がありません。パスします。 ", skipper.name));
+			System.out.println(String.format("%sは置く場所がありません。パスします。 ", skipper.getName()));
 		}
 
 		@Override
 		public void start(Board board, Player black, Player white) {
-			System.out.println(String.format("開始ます。黒：%s 白：%s", black.name, white.name));
+			System.out.println(String.format("開始ます。黒：%s 白：%s", black.getName(), white.getName()));
 			System.out.println(dumpBoard(board));
 		}
 

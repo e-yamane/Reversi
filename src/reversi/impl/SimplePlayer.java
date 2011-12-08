@@ -4,6 +4,7 @@ import java.awt.Point;
 
 import reversi.Board;
 import reversi.BoardState;
+import reversi.CompositeReporter;
 import reversi.Player;
 import reversi.Reversi;
 
@@ -14,18 +15,15 @@ public class SimplePlayer extends Player {
 
 	@Override
 	public Point nextPoint(Board board, BoardState state) {
-		for(Point p : board.points()) {
-			try {
-				board.put(p, state);
-				return p;
-			} catch(Exception e) {
-			}
-		}
-		return null;
+		return board.getAvailablePoints(state).get(0);
 	}
 	
 	public static void main(String[] args) {
-//		Reversi r = new Reversi(new NakamuraPlayer("’†‘º"), new AzuchiPlayer("ˆÀ“y"), new SwingReporter());
-//		r.fight();
+//		MinaPlayerServer player = new WebUIPlayer(8088);
+		MinaPlayerServer black = new MinaPlayerServer(8088);
+		MinaPlayerServer white = new MinaPlayerServer(8089);
+		Reversi r = new Reversi(black, white, 
+				new CompositeReporter(black.getReporter(), white.getReporter(), new SwingReporter()));
+		r.fight();
 	}
 }

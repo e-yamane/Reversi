@@ -26,6 +26,11 @@ public class DebugBoard extends Board {
 		return this;
 	}
 	
+	@Override
+	public void setState(Point p, BoardState state) {
+		super.setState(p, state);
+	}
+	
 	public void sets(BoardState[][] board) {
 		for(int y = 0 ; y < MAX ; y++) {
 			for(int x = 0 ; x < MAX ; x++) {

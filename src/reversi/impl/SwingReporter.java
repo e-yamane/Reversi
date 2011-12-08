@@ -95,17 +95,17 @@ public class SwingReporter implements Reporter {
 	}
 
 	void displayStart(Board board, Player black, Player white) {
-		frame.info.setText(String.format("開始ます。黒：%s 白：%s", black.name, white.name));
+		frame.info.setText(String.format("開始ます。黒：%s 白：%s", black.getName(), white.getName()));
 		frame.board.setText(dumpBoard(board));
 	}
 
 	void displayPut(Board board, Integer number, Player player, Point p) {
-		frame.info.setText(String.format("第%d手目(%s)[%s] ", number, player.name, p));
+		frame.info.setText(String.format("第%d手目(%s)[%s] ", number, player.getName(), p));
 		frame.board.setText(dumpBoard(board));
 	}
 
 	void displaySkip(Board board, Player skipper) {
-		frame.info.setText(String.format("%sは置く場所がありません。パスします。 ", skipper.name));
+		frame.info.setText(String.format("%sは置く場所がありません。パスします。 ", skipper.getName()));
 		frame.board.setText(dumpBoard(board));
 	}
 	
@@ -141,6 +141,7 @@ public class SwingReporter implements Reporter {
 	}
 	
 	class ReversiFrame extends JFrame {
+		private static final long serialVersionUID = 1L;
 		JTextField info;
 		JTextArea board;
 		ReversiFrame(){

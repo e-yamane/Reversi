@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>リバーシ</title>
+<style TYPE="text/css">
+<!--
+td { 
+  border          :1px solid black; 
+  padding         :0px; 
+  width           :80px; 
+  height          :80px;
+  font-size       :xx-large;
+  vertical-align  :middle;
+  text-align      :center;
+}
+-->
+</style>
+  </head>
+  <body>
+    <div id="header">あなたの手番：<span id="your"></span></div>
+    <table id="board" style="border-collapse:collapse;background-color:green;">
+      <tr>
+        <td id="board_x_0_y_0"></td>
+        <td id="board_x_1_y_0"></td>
+        <td id="board_x_2_y_0"></td>
+        <td id="board_x_3_y_0"></td>
+        <td id="board_x_4_y_0"></td>
+        <td id="board_x_5_y_0"></td>
+        <td id="board_x_6_y_0"></td>
+        <td id="board_x_7_y_0"></td>
+      </tr>
+      <tr>
+        <td id="board_x_0_y_1"></td>
+        <td id="board_x_1_y_1"></td>
+        <td id="board_x_2_y_1"></td>
+        <td id="board_x_3_y_1"></td>
+        <td id="board_x_4_y_1"></td>
+        <td id="board_x_5_y_1"></td>
+        <td id="board_x_6_y_1"></td>
+        <td id="board_x_7_y_1"></td>
+      </tr>
+      <tr>
+        <td id="board_x_0_y_2"></td>
+        <td id="board_x_1_y_2"></td>
+        <td id="board_x_2_y_2"></td>
+        <td id="board_x_3_y_2"></td>
+        <td id="board_x_4_y_2"></td>
+        <td id="board_x_5_y_2"></td>
+        <td id="board_x_6_y_2"></td>
+        <td id="board_x_7_y_2"></td>
+      </tr>
+      <tr>
+        <td id="board_x_0_y_3"></td>
+        <td id="board_x_1_y_3"></td>
+        <td id="board_x_2_y_3"></td>
+        <td id="board_x_3_y_3"></td>
+        <td id="board_x_4_y_3"></td>
+        <td id="board_x_5_y_3"></td>
+        <td id="board_x_6_y_3"></td>
+        <td id="board_x_7_y_3"></td>
+      </tr>
+      <tr>
+        <td id="board_x_0_y_4"></td>
+        <td id="board_x_1_y_4"></td>
+        <td id="board_x_2_y_4"></td>
+        <td id="board_x_3_y_4"></td>
+        <td id="board_x_4_y_4"></td>
+        <td id="board_x_5_y_4"></td>
+        <td id="board_x_6_y_4"></td>
+        <td id="board_x_7_y_4"></td>
+      </tr>
+      <tr>
+        <td id="board_x_0_y_5"></td>
+        <td id="board_x_1_y_5"></td>
+        <td id="board_x_2_y_5"></td>
+        <td id="board_x_3_y_5"></td>
+        <td id="board_x_4_y_5"></td>
+        <td id="board_x_5_y_5"></td>
+        <td id="board_x_6_y_5"></td>
+        <td id="board_x_7_y_5"></td>
+      </tr>
+      <tr>
+        <td id="board_x_0_y_6"></td>
+        <td id="board_x_1_y_6"></td>
+        <td id="board_x_2_y_6"></td>
+        <td id="board_x_3_y_6"></td>
+        <td id="board_x_4_y_6"></td>
+        <td id="board_x_5_y_6"></td>
+        <td id="board_x_6_y_6"></td>
+        <td id="board_x_7_y_6"></td>
+      </tr>
+      <tr>
+        <td id="board_x_0_y_7"></td>
+        <td id="board_x_1_y_7"></td>
+        <td id="board_x_2_y_7"></td>
+        <td id="board_x_3_y_7"></td>
+        <td id="board_x_4_y_7"></td>
+        <td id="board_x_5_y_7"></td>
+        <td id="board_x_6_y_7"></td>
+        <td id="board_x_7_y_7"></td>
+      </tr>
+    <table>
+    <form action="/" method="GET">
+      X:<input type="text" name="x" value="">
+      Y:<input type="text" name="y" valule="">
+      <input type="submit" value="置く" />
+    </form>
+    <script type="text/javascript">
+    <!--
+      function getYou(val, black, white, empty) {
+        if(val == 1) {
+            return black;
+        } else if (val == -1) {
+            return white;
+        } else {
+            return empty;
+        }
+      }
+
+      var json = %s;
+
+/*
+      var json = {
+        your: 1,
+        board:[
+        [ 0, 0, 0, 0, 0, 0, 0, 0]
+        ,[ 0, 0, 0, 0, 0, 0, 0, 0]
+        ,[ 0, 0,-1, 1, 0, 0, 0, 0]
+        ,[ 0, 0, 0,-1, 1, 0, 0, 0]
+        ,[ 0, 0, 0, 1,-1, 0, 0, 0]
+        ,[ 0, 0, 0, 0, 0, 0, 0, 0]
+        ,[ 0, 0, 0, 0, 0, 0, 0, 0]
+        ,[ 0, 0, 0, 0, 0, 0, 0, 0]
+        ]};
+*/
+        var callbackgen;
+        if(json.result) {
+            alert(getYou(json.result, '黒の勝ちです', '白の勝ちです', '引き分けです'));
+            callbackgen = function(x, y) {
+                return function(){};
+            }
+        } else {
+            callbackgen = function(x, y) {
+                return function() {
+                    var td = document.getElementById("board_x_" + x + "_y_" + y);
+                    td.childNodes[0].nodeValue = getYou(json.your, '●', '●', '　');
+                    td.style.color = getYou(json.your, 'black', 'white', 'black');
+                    document.body.style.backgroundColor  = "silver";
+                    document.forms[0].x.value = x;
+                    document.forms[0].y.value = y;
+                    document.forms[0].submit();
+                };
+            };
+        }
+        document.getElementById("your").appendChild(document.createTextNode(getYou(json.your, '黒', '白')));
+        for(y = 0 ; y < 8 ; y++) {
+            for(x = 0 ; x < 8 ; x++) {
+                var td = document.getElementById("board_x_" + x + "_y_" + y);
+                td.appendChild(document.createTextNode(getYou(json.board[y][x], '●', '●', '　')));
+                td.style.color = getYou(json.board[y][x], 'black', 'white', 'black');
+                callback = callbackgen(x, y);
+                td.onmouseup = callback;
+            }
+        }
+    -->
+    </script>
+  </body>
+</html>

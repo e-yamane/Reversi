@@ -17,16 +17,13 @@ public class BeginerPlayer extends Player {
 	public Point nextPoint(Board board, BoardState state) {
 		int max = -1;
 		Point ret = null;
-		for(Point p : board.points()) {
-			try {
-				Board tmp = board.clone();
-				tmp.put(p, state);
-				int count = getCounts(tmp, state);
-				if(max < count) {
-					max = count;
-					ret = p;
-				}
-			} catch(Exception e) {
+		for(Point p : board.getAvailablePoints(state)) {
+			Board tmp = board.clone();
+			tmp.put(p, state);
+			int count = getCounts(tmp, state);
+			if(max < count) {
+				max = count;
+				ret = p;
 			}
 		}
 		return ret;
@@ -41,7 +38,7 @@ public class BeginerPlayer extends Player {
 	}
 
 	public static void main(String[] args) {
-//		Reversi r = new Reversi(new YamanePlayer(), new BeginerPlayer("”’"));
-//		r.fight();
+		Reversi r = new Reversi(new BeginerPlayer("•"), new BeginerPlayer("”’"));
+		r.fight();
 	}
 }

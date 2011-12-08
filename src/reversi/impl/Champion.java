@@ -1,6 +1,7 @@
 package reversi.impl;
 
 import java.awt.Point;
+import java.util.List;
 
 import reversi.Board;
 import reversi.BoardState;
@@ -12,44 +13,58 @@ public class Champion extends Player {
 		super(name);
 	}
 
+	private static int[][] boardPoints = {
+		{10, -4, 5, 0, 0, 5, -4, 10,},
+		{-4, -5, 5, 5, 5, 5, -5, -4,},
+		{5, 5, 9, 0, 0, 9, 5, 5,},
+		{0, 5, 0, 0, 0, 0, 5, 0,},
+		{0, 5, 0, 0, 0, 0, 5, 0,},
+		{5, 5, 9, 5, 5, 9, 5, 5,},
+		{-4, -5, 0, 0, 0, 0, -5, -4,},
+		{10, -4, 5, 0, 0, 5, -4, 10,},
+	};
+
+	private int step = 1;
 	@Override
 	public Point nextPoint(Board board, BoardState state) {
-		int max = Integer.MIN_VALUE;
-		Point ret = null;
-		for(Point p : board.points()) {
-			try {
-				Board tmp = board.clone();
-				tmp.put(p, state);
-				int point = getPoint(board, tmp, state);
-				if(max < point) {
-					max = point;
-					ret = p;
+		System.out.println(step + "–Ú");
+		List<Point> nextPoints = board.getAvailablePoints(state);
+	
+		int beforeCount = 100;
+		Point bestPoint = nextPoints.get(0);
+		for (Point p : nextPoints) {
+			Board stubBoard = board.clone();
+			stubBoard.put(p, state);
+			if (step > 6) {
+				int count = stubBoard.getAvailablePoints(state.reverse()).size();
+				if (beforeCount > count) {
+					beforeCount = count;
+					if (getAxisPoint(p.x, p.y) < 0) {
+						continue;
+					}
+					bestPoint = p;
 				}
-			} catch(Exception e) {
+			
+				if (beforeCount == count) {
+					bestPoint = selectPoint(bestPoint, p);
+				}
+			} else {
+				bestPoint = selectPoint(bestPoint, p);
 			}
 		}
-		return ret;
+	
+		step++;
+		return bestPoint;
 	}
 
-	private int getPoint(Board org, Board tmp, BoardState state) {
-		int ret = 0;
-		for(Point p : tmp.points()) {
-			if(tmp.getState(p) == state) {
-				ret += BIAS[p.y][p.x];
-			}
-		}
-		return ret;
+	private Point selectPoint(Point bestPoint, Point p) {
+		int p1 = getAxisPoint(bestPoint.x, bestPoint.y);
+		int p2 = getAxisPoint(p.x, p.y);
+	
+		return (p1 > p2) ? bestPoint : p;
 	}
 
-	final static int[][] BIAS =
-		{
-			{20,1,10,10,10,10,1,20},
-			{ 1,2, 3, 3, 3, 3,2, 1},
-			{10,3, 3, 5, 5, 3,3,10},
-			{10,3, 5, 5, 5, 5,3,10},
-			{10,3, 5, 5, 5, 5,3,10},
-			{10,3, 3, 5, 5, 3,3,10},
-			{ 1,2, 3, 3, 3, 3,2, 1},
-			{20,1,10,10,10,10,1,20}
-		};
+	public static int getAxisPoint(int x, int y) {
+		return boardPoints[y][x];
+	}
 }
