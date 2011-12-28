@@ -152,12 +152,12 @@ public class MinaPlayerServer extends Player {
 		sb.append("\",\n");
 		sb.append("board:[\n");
 		String lineDelim = "";
-		for(int y = 0 ; y < Board.MAX ; y++) {
+		for(int y = 0 ; y < board.getYMax() ; y++) {
 			sb.append(lineDelim);
 			lineDelim=",";
 			sb.append("[");
 			String colDelim = "";
-			for(int x = 0 ; x < Board.MAX ; x++) {
+			for(int x = 0 ; x < board.getXMax() ; x++) {
 				sb.append(colDelim);
 				colDelim=",";
 				sb.append(toString(board.getState(new Point(x, y))));

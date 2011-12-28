@@ -115,8 +115,8 @@ public class SwingReporter implements Reporter {
 	
 	static String dumpBoard(Board board) {
 		StringBuilder sb = new StringBuilder();
-		for(int y = 0 ; y < Board.MAX ; y++) {
-			for(int x = 0 ; x < Board.MAX ; x++) {
+		for(int y = 0 ; y < board.getYMax() ; y++) {
+			for(int x = 0 ; x < board.getXMax() ; x++) {
 				switch (board.getState(new Point(x, y))) {
 				case EMPTY:
 					sb.append("{");

@@ -22,6 +22,25 @@ public class BoardTest extends TestCase {
 		assertEquals("白じゃありません。", BoardState.BLACK, b.getState(new Point(4, 3)));
 	}
 	
+	public void test盤のサイズを指定して初期化できる事() throws Exception {
+		Board b = new Board(4, 4);
+		assertEquals("黒の個数が誤っています。", 2, b.getWhites());
+		assertEquals("白の個数が誤っています。", 2, b.getBlacks());
+		assertEquals("空白の個数が誤っています。", 12, b.getCount(BoardState.EMPTY));
+		assertEquals("黒じゃありません。", BoardState.WHITE, b.getState(new Point(1, 1)));
+		assertEquals("黒じゃありません。", BoardState.WHITE, b.getState(new Point(2, 2)));
+		assertEquals("白じゃありません。", BoardState.BLACK, b.getState(new Point(1, 2)));
+		assertEquals("白じゃありません。", BoardState.BLACK, b.getState(new Point(2, 1)));
+	}
+	
+	public void test盤サイズを指定してcloneした際に盤のサイズも引き継ぐこと() throws Exception {
+		Board b = new Board(4, 4);
+		b = b.clone();
+		assertEquals("黒の個数が誤っています。", 2, b.getWhites());
+		assertEquals("白の個数が誤っています。", 2, b.getBlacks());
+		assertEquals("空白の個数が誤っています。", 12, b.getCount(BoardState.EMPTY));
+	}
+	
 	public void test白の個数を計算() throws Exception {
 		Board b = new Board();
 		//インチキ

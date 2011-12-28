@@ -7,18 +7,41 @@ import java.util.List;
 
 public class Board implements Cloneable {
 	BoardState[][] board;
-	public final static int MAX = 8;
+	public final static int DEFAULT_MAX = 8;
+	private final int xMax;
+	private final int yMax;
 	
 	public Board() {
-		board = new BoardState[8][];
-		for(int i = 0 ; i < MAX ; i++) {
-			board[i] = new BoardState[MAX];
+		this(DEFAULT_MAX, DEFAULT_MAX);
+	}
+
+	protected Board(int x, int y) {
+		board = new BoardState[y][];
+		for(int i = 0 ; i < y ; i++) {
+			board[i] = new BoardState[x];
 			Arrays.fill(board[i], BoardState.EMPTY);
 		}
-		board[3][3] = BoardState.WHITE;
-		board[4][4] = BoardState.WHITE;
-		board[3][4] = BoardState.BLACK;
-		board[4][3] = BoardState.BLACK;
+		this.xMax = x;
+		this.yMax = y;
+		int xCenter = x / 2;
+		int yCenter = y / 2;
+		board[xCenter-1][yCenter-1] = BoardState.WHITE;
+		board[xCenter][yCenter] = BoardState.WHITE;
+		board[xCenter-1][yCenter] = BoardState.BLACK;
+		board[xCenter][yCenter-1] = BoardState.BLACK;
+	}
+
+	public int getXMax() {
+		return xMax;
+	}
+
+	public int getYMax() {
+		return yMax;
+	}
+
+	public int getMinMax() {
+		int max = Math.min(getXMax(), getYMax());
+		return max;
 	}
 
 	public int getWhites() {
@@ -49,7 +72,7 @@ public class Board implements Cloneable {
 
 	@Override
 	public Board clone() {
-		Board ret = new Board();
+		Board ret = new Board(getXMax(), getYMax());
 		for(Point p : points()) {
 			ret.setState(p, getState(p));
 		}
@@ -98,8 +121,8 @@ public class Board implements Cloneable {
 
 	public Iterable<Point> points() {
 		List<Point> ret = new ArrayList<Point>();
-		for(int y = 0 ; y < MAX ; y++) {
-			for(int x = 0 ; x < MAX ; x++) {
+		for(int y = 0 ; y < getYMax() ; y++) {
+			for(int x = 0 ; x < getXMax() ; x++) {
 				ret.add(new Point(x, y));
 			}
 		}
@@ -161,7 +184,7 @@ public class Board implements Cloneable {
 	class Lower extends Reverser {
 		@Override
 		public List<Point> loop(Point point, BoardState state, List<Point> list) {
-			for(int i = (int)point.y + 1 ; i < MAX ; i++) {
+			for(int i = (int)point.y + 1 ; i < getYMax() ; i++) {
 				Point p = new Point(point.x, i);
 				list = logic(p, state, list);
 			}
@@ -172,7 +195,7 @@ public class Board implements Cloneable {
 	class Righter extends Reverser {
 		@Override
 		public List<Point> loop(Point point, BoardState state, List<Point> list) {
-			for(int i = (int)point.x + 1 ; i < MAX ; i++) {
+			for(int i = (int)point.x + 1 ; i < getXMax() ; i++) {
 				Point p = new Point(i, point.y);
 				list = logic(p, state, list);
 			}
@@ -194,7 +217,8 @@ public class Board implements Cloneable {
 	class LeftUpper extends Reverser {
 		@Override
 		public List<Point> loop(Point point, BoardState state, List<Point> list) {
-			for(int i = 1 ; i < MAX ; i++) {
+			int max = getMinMax();
+			for(int i = 1 ; i < max ; i++) {
 				Point p = new Point(point.x - i, point.y - i);
 				if(p.x < 0 || p.y < 0) {
 					return list;
@@ -208,9 +232,10 @@ public class Board implements Cloneable {
 	class RightUpper extends Reverser {
 		@Override
 		public List<Point> loop(Point point, BoardState state, List<Point> list) {
-			for(int i = 1 ; i < MAX ; i++) {
+			int max = getMinMax();
+			for(int i = 1 ; i < max ; i++) {
 				Point p = new Point(point.x + i, point.y - i);
-				if(p.x >= MAX || p.y < 0) {
+				if(p.x >= getXMax() || p.y < 0) {
 					return list;
 				}
 				list = logic(p, state, list);
@@ -222,9 +247,10 @@ public class Board implements Cloneable {
 	class RightLower extends Reverser {
 		@Override
 		public List<Point> loop(Point point, BoardState state, List<Point> list) {
-			for(int i = 1 ; i < MAX ; i++) {
+			int max = getMinMax();
+			for(int i = 1 ; i < max ; i++) {
 				Point p = new Point(point.x + i, point.y + i);
-				if(p.x >= MAX || p.y >= MAX) {
+				if(p.x >= getXMax() || p.y >= getYMax()) {
 					return list;
 				}
 				list = logic(p, state, list);
@@ -236,9 +262,10 @@ public class Board implements Cloneable {
 	class LeftLower extends Reverser {
 		@Override
 		public List<Point> loop(Point point, BoardState state, List<Point> list) {
-			for(int i = 1 ; i < MAX ; i++) {
+			int max = getMinMax();
+			for(int i = 1 ; i < max ; i++) {
 				Point p = new Point(point.x - i, point.y + i);
-				if(p.x < 0 || p.y >= MAX) {
+				if(p.x < 0 || p.y >= getYMax()) {
 					return list;
 				}
 				list = logic(p, state, list);
