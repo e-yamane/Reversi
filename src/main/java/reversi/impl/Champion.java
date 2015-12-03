@@ -27,7 +27,7 @@ public class Champion extends Player {
 	private int step = 1;
 	@Override
 	public Point nextPoint(Board board, BoardState state) {
-		System.out.println(step + "–Ú");
+		System.out.println(step + "ç›®");
 		List<Point> nextPoints = board.getAvailablePoints(state);
 	
 		int beforeCount = 100;

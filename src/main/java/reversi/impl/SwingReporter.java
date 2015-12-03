@@ -95,17 +95,17 @@ public class SwingReporter implements Reporter {
 	}
 
 	void displayStart(Board board, Player black, Player white) {
-		frame.info.setText(String.format("ŠJn‚Ü‚·B•F%s ”’F%s", black.getName(), white.getName()));
+		frame.info.setText(String.format("é–‹å§‹ã¾ã™ã€‚é»’ï¼š%s ç™½ï¼š%s", black.getName(), white.getName()));
 		frame.board.setText(dumpBoard(board));
 	}
 
 	void displayPut(Board board, Integer number, Player player, Point p) {
-		frame.info.setText(String.format("‘æ%dè–Ú(%s)[%s] ", number, player.getName(), p));
+		frame.info.setText(String.format("ç¬¬%dæ‰‹ç›®(%s)[%s] ", number, player.getName(), p));
 		frame.board.setText(dumpBoard(board));
 	}
 
 	void displaySkip(Board board, Player skipper) {
-		frame.info.setText(String.format("%s‚Í’u‚­êŠ‚ª‚ ‚è‚Ü‚¹‚ñBƒpƒX‚µ‚Ü‚·B ", skipper.getName()));
+		frame.info.setText(String.format("%sã¯ç½®ãå ´æ‰€ãŒã‚ã‚Šã¾ã›ã‚“ã€‚ãƒ‘ã‚¹ã—ã¾ã™ã€‚ ", skipper.getName()));
 		frame.board.setText(dumpBoard(board));
 	}
 	
@@ -119,13 +119,13 @@ public class SwingReporter implements Reporter {
 			for(int x = 0 ; x < board.getXMax() ; x++) {
 				switch (board.getState(new Point(x, y))) {
 				case EMPTY:
-					sb.append("{");
+					sb.append("ï¼‹");
 					break;
 				case BLACK:
-					sb.append("œ");
+					sb.append("â—");
 					break;
 				case WHITE:
-					sb.append("›");
+					sb.append("â—‹");
 				}
 			}
 			sb.append("\n");
@@ -145,7 +145,7 @@ public class SwingReporter implements Reporter {
 		JTextField info;
 		JTextArea board;
 		ReversiFrame(){
-			setTitle("ƒŠƒo[ƒV");
+			setTitle("ãƒªãƒãƒ¼ã‚·");
 			setBounds(100, 100, 300, 250);
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			
@@ -160,14 +160,14 @@ public class SwingReporter implements Reporter {
 			p.add(board);
 			
 			Box buttons = Box.createHorizontalBox();
-			JButton prev = new JButton("‘O‚Ö");
+			JButton prev = new JButton("å‰ã¸");
 			prev.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					prev();
 				}
 			});
-			JButton next = new JButton("Ÿ‚Ö");
+			JButton next = new JButton("æ¬¡ã¸");
 			next.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -175,7 +175,7 @@ public class SwingReporter implements Reporter {
 				}
 			});
 			
-			JButton auto = new JButton("©“®");
+			JButton auto = new JButton("è‡ªå‹•");
 			auto.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -202,7 +202,7 @@ public class SwingReporter implements Reporter {
 	}
 
 	public static void main(String[] args) throws Exception {
-		Reversi r = new Reversi(new BeginerPlayer("•"), new BeginerPlayer("”’"), new SwingReporter());
+		Reversi r = new Reversi(new BeginerPlayer("é»’"), new BeginerPlayer("ç™½"), new SwingReporter());
 		r.fight();
 	}
 }

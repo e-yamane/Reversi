@@ -38,7 +38,7 @@ public class BeginerPlayer extends Player {
 	}
 
 	public static void main(String[] args) {
-		Reversi r = new Reversi(new BeginerPlayer("•‚¿‚á‚ñ"), new BeginerPlayer("”’"));
+		Reversi r = new Reversi(new BeginerPlayer("é»’ã¡ã‚ƒã‚“"), new BeginerPlayer("ç™½"));
 		r.fight();
 	}
 }

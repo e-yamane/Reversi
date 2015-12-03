@@ -94,12 +94,12 @@ public class MinaPlayerClient {
 		Thread blackT = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				MinaPlayerClient player = MinaPlayerClient.getInstance(new SimplePlayer("‚Ù‚°ƒuƒ‰ƒbƒN"), "http://localhost:8088");
+				MinaPlayerClient player = MinaPlayerClient.getInstance(new SimplePlayer("ã»ã’ãƒ–ãƒ©ãƒƒã‚¯"), "http://localhost:8088");
 				System.out.println(player.start());
 			}
 		});
 		blackT.start();
-		MinaPlayerClient player = MinaPlayerClient.getInstance(new BeginerPlayer("‚Û‚°ƒzƒƒCƒg"), "http://localhost:8089");
+		MinaPlayerClient player = MinaPlayerClient.getInstance(new BeginerPlayer("ã½ã’ãƒ›ãƒ¯ã‚¤ãƒˆ"), "http://localhost:8089");
 		System.out.println(player.start());
 	}
 }

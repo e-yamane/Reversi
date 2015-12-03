@@ -58,11 +58,11 @@ public class Board implements Cloneable {
 
 	public void put(Point point, BoardState state) {
 		if(getState(point) != BoardState.EMPTY) {
-			throw new IllegalArgumentException("Šù‚É’u‚©‚ê‚Ä‚¢‚Ü‚·B");
+			throw new IllegalArgumentException("æ—¢ã«ç½®ã‹ã‚Œã¦ã„ã¾ã™ã€‚");
 		}
 		List<Point> list = getReversePoints(point, state);
 		if(list.size() == 0) {
-			throw new IllegalArgumentException("ˆê–‡‚à•Ô‚¹‚Ü‚¹‚ñ");
+			throw new IllegalArgumentException("ä¸€æšã‚‚è¿”ã›ã¾ã›ã‚“");
 		}
 		for(Point p : list) {
 			reverse(p);

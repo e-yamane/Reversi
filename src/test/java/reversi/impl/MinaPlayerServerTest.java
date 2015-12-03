@@ -12,21 +12,21 @@ import reversi.Reversi;
 
 public class MinaPlayerServerTest extends TestCase {
 	public void testToString() {
-		Player black = new Player("ÇŸÇ∞"){
+		Player black = new Player("„Åª„Åí"){
 			@Override
 			public Point nextPoint(Board clone, BoardState state) {
 				return null;
 			}
 			
 		};
-		Player white = new SimplePlayer("Ç€Ç∞");
+		Player white = new SimplePlayer("„ÅΩ„Åí");
 		DebugBoard db = new DebugBoard();
 		String ret1 = MinaPlayerServer.toString(db, BoardState.BLACK, null, black, white);
 		final String result1 = 
 			"{\n" +
 			"your: 1,\n" +
-			"black:\"ÇŸÇ∞\",\n" +
-			"white:\"Ç€Ç∞\",\n" +
+			"black:\"„Åª„Åí\",\n" +
+			"white:\"„ÅΩ„Åí\",\n" +
 			"board:[\n" +
 			"[ 0, 0, 0, 0, 0, 0, 0, 0]\n" +
 			",[ 0, 0, 0, 0, 0, 0, 0, 0]\n" +
@@ -44,8 +44,8 @@ public class MinaPlayerServerTest extends TestCase {
 			"{\n" +
 			"result:-1,\n" + 
 			"your: 1,\n" +
-			"black:\"ÇŸÇ∞\",\n" +
-			"white:\"Ç€Ç∞\",\n" +
+			"black:\"„Åª„Åí\",\n" +
+			"white:\"„ÅΩ„Åí\",\n" +
 			"board:[\n" +
 			"[ 0, 0, 0, 0, 0, 0, 0, 0]\n" +
 			",[ 0, 0, 0, 0, 0, 0, 0, 0]\n" +

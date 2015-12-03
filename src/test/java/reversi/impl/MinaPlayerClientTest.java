@@ -11,7 +11,7 @@ public class MinaPlayerClientTest extends TestCase {
 		MinaPlayerClient client1 = MinaPlayerClient.getInstance(new SimplePlayer("abc"), "http://localhost:8088");
 		assertEquals("http://localhost:8088/?name=abc", client1.getURL(null).toString());
 		assertEquals("http://localhost:8088/?name=abc&x=5&y=7", client1.getURL(new Point(5, 7)).toString());
-		MinaPlayerClient client2 = MinaPlayerClient.getInstance(new SimplePlayer("ÇŸÇ∞"), "http://localhost:8088/");
+		MinaPlayerClient client2 = MinaPlayerClient.getInstance(new SimplePlayer("„Åª„Åí"), "http://localhost:8088/");
 		assertEquals("http://localhost:8088/?name=%E3%81%BB%E3%81%92", client2.getURL(null).toString());
 		assertEquals("http://localhost:8088/?name=%E3%81%BB%E3%81%92&x=3&y=1", client2.getURL(new Point(3, 1)).toString());
 	}

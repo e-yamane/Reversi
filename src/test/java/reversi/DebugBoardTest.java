@@ -5,7 +5,7 @@ import java.awt.Point;
 import junit.framework.TestCase;
 
 public class DebugBoardTest extends TestCase {
-	public void test•‚ğ“K“–‚ÈˆÊ’u‚É’u‚¯‚é–() throws Exception {
+	public void testé»’ã‚’é©å½“ãªä½ç½®ã«ç½®ã‘ã‚‹äº‹() throws Exception {
 		DebugBoard db = new DebugBoard();
 		DebugBoard db2 = db.black(1, 0);
 		assertTrue(db == db2);
@@ -13,7 +13,7 @@ public class DebugBoardTest extends TestCase {
 		assertEquals(BoardState.EMPTY, db2.getState(new Point(0, 1)));
 	}
 
-	public void test”’‚ğ“K“–‚ÈˆÊ’u‚É’u‚¯‚é–() throws Exception {
+	public void testç™½ã‚’é©å½“ãªä½ç½®ã«ç½®ã‘ã‚‹äº‹() throws Exception {
 		DebugBoard db = new DebugBoard();
 		DebugBoard db2 = db.white(1, 0);
 		assertTrue(db == db2);
@@ -21,7 +21,7 @@ public class DebugBoardTest extends TestCase {
 		assertEquals(BoardState.EMPTY, db2.getState(new Point(0, 1)));
 	}
 
-	public void test“K“–‚ÈˆÊ’u‚ğ‹ó”’‚É‚Å‚«‚é–() throws Exception {
+	public void testé©å½“ãªä½ç½®ã‚’ç©ºç™½ã«ã§ãã‚‹äº‹() throws Exception {
 		DebugBoard db = new DebugBoard();
 		DebugBoard db2 = db.empty(3, 4);
 		assertTrue(db == db2);
@@ -29,7 +29,7 @@ public class DebugBoardTest extends TestCase {
 		assertEquals(BoardState.BLACK, db2.getState(new Point(4, 3)));
 	}
 	
-	public void test˜A‘±‚Åè‚ği‚ß‚½ó‹µ‚ğì‚èo‚¹‚é–() throws Exception {
+	public void testé€£ç¶šã§æ‰‹ã‚’é€²ã‚ãŸçŠ¶æ³ã‚’ä½œã‚Šå‡ºã›ã‚‹äº‹() throws Exception {
 		DebugBoard db = new DebugBoard();
 		DebugBoard db2 = db.steps(BoardState.BLACK, 
 				new Point(3, 2),
@@ -40,18 +40,18 @@ public class DebugBoardTest extends TestCase {
 		assertEquals(1, db2.getWhites());
 	}
 	
-	public void test‘S–ÊƒZƒbƒg‚Å‚«‚é–() throws Exception {
-		BoardState • = BoardState.BLACK;
-		BoardState ”’ = BoardState.WHITE;
+	public void testå…¨é¢ã‚»ãƒƒãƒˆã§ãã‚‹äº‹() throws Exception {
+		BoardState é»’ = BoardState.BLACK;
+		BoardState ç™½ = BoardState.WHITE;
 		BoardState __ = BoardState.EMPTY;
 		BoardState[][] board = new BoardState[][]{
-				{__,__,__,”’,__,__,__,__},	
+				{__,__,__,ç™½,__,__,__,__},	
 				{__,__,__,__,__,__,__,__},	
 				{__,__,__,__,__,__,__,__},	
 				{__,__,__,__,__,__,__,__},	
 				{__,__,__,__,__,__,__,__},	
-				{__,•,__,__,__,__,__,__},	
-				{__,•,__,__,__,__,__,__},	
+				{__,é»’,__,__,__,__,__,__},	
+				{__,é»’,__,__,__,__,__,__},	
 				{__,__,__,__,__,__,__,__},	
 		};
 		DebugBoard db = new DebugBoard();

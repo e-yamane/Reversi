@@ -70,8 +70,8 @@ public class Reversi {
 			try {
 				new Thread(run).start();
 				Thread.sleep(getLimitTime());
-				System.out.println("ƒ^ƒCƒ€ƒAƒEƒgII");
-				throw new RuntimeException("ƒ^ƒCƒ€ƒAƒEƒg");
+				System.out.println("ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆï¼ï¼");
+				throw new RuntimeException("ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ");
 			} catch (InterruptedException e) {
 			}
 			Point p = run.p;
@@ -152,18 +152,18 @@ public class Reversi {
 
 		@Override
 		public void put(Board board, int number, Player player, Point p) {
-			System.out.println(String.format("‘æ%dè–Ú(%s)[%s] ", number, player.getName(), p));
+			System.out.println(String.format("ç¬¬%dæ‰‹ç›®(%s)[%s] ", number, player.getName(), p));
 			System.out.println(dumpBoard(board));
 		}
 
 		@Override
 		public void skip(Board board, Player skipper) {
-			System.out.println(String.format("%s‚Í’u‚­êŠ‚ª‚ ‚è‚Ü‚¹‚ñBƒpƒX‚µ‚Ü‚·B ", skipper.getName()));
+			System.out.println(String.format("%sã¯ç½®ãå ´æ‰€ãŒã‚ã‚Šã¾ã›ã‚“ã€‚ãƒ‘ã‚¹ã—ã¾ã™ã€‚ ", skipper.getName()));
 		}
 
 		@Override
 		public void start(Board board, Player black, Player white) {
-			System.out.println(String.format("ŠJn‚Ü‚·B•F%s ”’F%s", black.getName(), white.getName()));
+			System.out.println(String.format("é–‹å§‹ã¾ã™ã€‚é»’ï¼š%s ç™½ï¼š%s", black.getName(), white.getName()));
 			System.out.println(dumpBoard(board));
 		}
 
@@ -173,13 +173,13 @@ public class Reversi {
 				for(int x = 0 ; x < board.getXMax() ; x++) {
 					switch (board.getState(new Point(x, y))) {
 					case EMPTY:
-						sb.append(" ");
+						sb.append("â–¡");
 						break;
 					case BLACK:
-						sb.append("œ");
+						sb.append("â—");
 						break;
 					case WHITE:
-						sb.append("›");
+						sb.append("â—‹");
 					}
 				}
 				sb.append("\n");

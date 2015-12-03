@@ -7,15 +7,15 @@ import reversi.impl.SimplePlayer;
 import junit.framework.TestCase;
 
 public class ReversiTest extends TestCase {
-	public void test¶¬‚Å‚«‚é–() {
+	public void testç”Ÿæˆã§ãã‚‹äº‹() {
 		Player black = new EmptyPlayer();
 		Player white = new EmptyPlayer();
 		Reversi r = new Reversi(black, white);
-		assertTrue("•”ÔƒvƒŒƒCƒ„[‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", black == r.black);
-		assertTrue("”’”ÔƒvƒŒƒCƒ„[‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", white == r.white);
+		assertTrue("é»’ç•ªãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", black == r.black);
+		assertTrue("ç™½ç•ªãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", white == r.white);
 	}
 
-	public void test”’‚ª’u‚¯‚È‚¢–‚ª”»’f‰Â”\‚È–() throws Exception {
+	public void testç™½ãŒç½®ã‘ãªã„äº‹ãŒåˆ¤æ–­å¯èƒ½ãªäº‹() throws Exception {
 		Player black = new EmptyPlayer();
 		Player white = new EmptyPlayer();
 		Reversi r = new Reversi(black, white);
@@ -25,11 +25,11 @@ public class ReversiTest extends TestCase {
 			}
 		}
 		r.board.board[4][4] = BoardState.BLACK;
-		assertFalse("”’‚Í’u‚¯‚Ü‚¹‚ñB", r.isPuttable(BoardState.WHITE));
-		assertTrue("•‚Í’u‚¯‚Ü‚·B", r.isPuttable(BoardState.BLACK));
+		assertFalse("ç™½ã¯ç½®ã‘ã¾ã›ã‚“ã€‚", r.isPuttable(BoardState.WHITE));
+		assertTrue("é»’ã¯ç½®ã‘ã¾ã™ã€‚", r.isPuttable(BoardState.BLACK));
 	}
 	
-	public void test•‚ª’u‚¯‚È‚¢–‚ª”»’f‰Â”\‚È–() throws Exception {
+	public void testé»’ãŒç½®ã‘ãªã„äº‹ãŒåˆ¤æ–­å¯èƒ½ãªäº‹() throws Exception {
 		Player black = new EmptyPlayer();
 		Player white = new EmptyPlayer();
 		Reversi r = new Reversi(black, white);
@@ -39,12 +39,12 @@ public class ReversiTest extends TestCase {
 			}
 		}
 		r.board.board[4][4] = BoardState.WHITE;
-		assertFalse("•‚Í’u‚¯‚Ü‚¹‚ñB", r.isPuttable(BoardState.BLACK));
-		assertTrue("”’‚Í’u‚¯‚Ü‚·B", r.isPuttable(BoardState.WHITE));
+		assertFalse("é»’ã¯ç½®ã‘ã¾ã›ã‚“ã€‚", r.isPuttable(BoardState.BLACK));
+		assertTrue("ç™½ã¯ç½®ã‘ã¾ã™ã€‚", r.isPuttable(BoardState.WHITE));
 	}
 
 
-	public void test—¼Ò‘Å‚Â‚Æ‚±‚ë‚ª–³‚¯‚ê‚Î‚»‚Ì“_‚ÌŒ‹‰Ê‚ğ•Ô‹p‚·‚é–() throws Exception {
+	public void testä¸¡è€…æ‰“ã¤ã¨ã“ã‚ãŒç„¡ã‘ã‚Œã°ãã®æ™‚ç‚¹ã®çµæœã‚’è¿”å´ã™ã‚‹äº‹() throws Exception {
 		Player black = new EmptyPlayer();
 		Player white = new EmptyPlayer();
 		Reversi r = new Reversi(black, white);
@@ -52,40 +52,40 @@ public class ReversiTest extends TestCase {
 		r.getBoard().board[3][4] = BoardState.EMPTY;
 		r.getBoard().board[4][3] = BoardState.EMPTY;
 		Reversi.Result result = r.fight();
-		assertEquals("Œ‹‰Ê‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", Reversi.Judge.WHITE, result.judge());
+		assertEquals("çµæœãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", Reversi.Judge.WHITE, result.judge());
 	}
 	
-	public void testˆêèi‚ß‚ç‚ê‚é–() throws Exception {
-		Player black = new SimplePlayer("•");
-		Player white = new SimplePlayer("”’");
+	public void testä¸€æ‰‹é€²ã‚ã‚‰ã‚Œã‚‹äº‹() throws Exception {
+		Player black = new SimplePlayer("é»’");
+		Player white = new SimplePlayer("ç™½");
 		Reversi r = new Reversi(black, white);
 		r.tryingOnce(BoardState.BLACK);
 		final String result = 
-			"        \n" + 
-			"        \n" + 
-			"   œ    \n" + 
-			"   œœ   \n" + 
-			"   œ›   \n" + 
-			"        \n" + 
-			"        \n" + 
-			"        \n";
-		assertEquals("•Ô‹p’l‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", result, r.dumpBoard());
+			"â–¡â–¡â–¡â–¡â–¡â–¡â–¡â–¡\n" + 
+			"â–¡â–¡â–¡â–¡â–¡â–¡â–¡â–¡\n" + 
+			"â–¡â–¡â–¡â—â–¡â–¡â–¡â–¡\n" + 
+			"â–¡â–¡â–¡â—â—â–¡â–¡â–¡\n" + 
+			"â–¡â–¡â–¡â—â—‹â–¡â–¡â–¡\n" + 
+			"â–¡â–¡â–¡â–¡â–¡â–¡â–¡â–¡\n" + 
+			"â–¡â–¡â–¡â–¡â–¡â–¡â–¡â–¡\n" + 
+			"â–¡â–¡â–¡â–¡â–¡â–¡â–¡â–¡\n";
+		assertEquals("è¿”å´å€¤ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", result, r.dumpBoard());
 	}
 	
-	public void test—áŠO‚ğ”­¶‚³‚¹‚½•û‚ª•‰‚¯‚é–() throws Exception {
+	public void testä¾‹å¤–ã‚’ç™ºç”Ÿã•ã›ãŸæ–¹ãŒè² ã‘ã‚‹äº‹() throws Exception {
 		Player black = new EmptyPlayer();
 		Player white = new EmptyPlayer();
 		Reversi r = new Reversi(black, white);
 		Reversi.Result result = r.fight();
-		assertEquals("Œ‹‰Ê‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", Reversi.Judge.WHITE, result.judge());
+		assertEquals("çµæœãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", Reversi.Judge.WHITE, result.judge());
 	}
 
-	public void test‚Q•b‰“š‚ª‚È‚¯‚ê‚Î–â“š–³—p‚Å•‰‚¯‚É‚È‚é‚±‚Æ() throws Exception {
+	public void testï¼’ç§’å¿œç­”ãŒãªã‘ã‚Œã°å•ç­”ç„¡ç”¨ã§è² ã‘ã«ãªã‚‹ã“ã¨() throws Exception {
 		Player black = new LaterPlayer();
 		Player white = new EmptyPlayer();
 		Reversi r = new Reversi(black, white);
 		Reversi.Result result = r.fight();
-		assertEquals("Œ‹‰Ê‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", Reversi.Judge.WHITE, result.judge());
+		assertEquals("çµæœãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", Reversi.Judge.WHITE, result.judge());
 	}
 	
 	public void testDumpBoard() throws Exception {
@@ -93,21 +93,21 @@ public class ReversiTest extends TestCase {
 		Player white = new EmptyPlayer();
 		Reversi r = new Reversi(black, white);
 		final String result = 
-			"        \n" + 
-			"        \n" + 
-			"        \n" + 
-			"   ›œ   \n" + 
-			"   œ›   \n" + 
-			"        \n" + 
-			"        \n" + 
-			"        \n";
-		assertEquals("•Ô‹p’l‚ªŒë‚Á‚Ä‚¢‚Ü‚·B", result, r.dumpBoard());
+			"â–¡â–¡â–¡â–¡â–¡â–¡â–¡â–¡\n" + 
+			"â–¡â–¡â–¡â–¡â–¡â–¡â–¡â–¡\n" + 
+			"â–¡â–¡â–¡â–¡â–¡â–¡â–¡â–¡\n" + 
+			"â–¡â–¡â–¡â—‹â—â–¡â–¡â–¡\n" + 
+			"â–¡â–¡â–¡â—â—‹â–¡â–¡â–¡\n" + 
+			"â–¡â–¡â–¡â–¡â–¡â–¡â–¡â–¡\n" + 
+			"â–¡â–¡â–¡â–¡â–¡â–¡â–¡â–¡\n" + 
+			"â–¡â–¡â–¡â–¡â–¡â–¡â–¡â–¡\n";
+		assertEquals("è¿”å´å€¤ãŒèª¤ã£ã¦ã„ã¾ã™ã€‚", result, r.dumpBoard());
 	}
 
 	
 	static class EmptyPlayer extends Player {
 		public EmptyPlayer() {
-			super("‚Ù‚°");
+			super("ã»ã’");
 		}
 
 		@Override
@@ -119,7 +119,7 @@ public class ReversiTest extends TestCase {
 
 	static class LaterPlayer extends SimplePlayer {
 		public LaterPlayer() {
-			super("“ªˆ«‚¢q");
+			super("é ­æ‚ªã„å­");
 		}
 
 		@Override

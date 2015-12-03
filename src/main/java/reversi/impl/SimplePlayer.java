@@ -18,7 +18,7 @@ public class SimplePlayer extends Player {
 	}
 	
 	public static void main(String[] args) {
-		Reversi r = new Reversi(new SimplePlayer("çï"), new SimplePlayer("çï"));
+		Reversi r = new Reversi(new SimplePlayer("Èªí"), new SimplePlayer("Èªí"));
 		r.fight();
 	}
 }
