@@ -3,3 +3,12 @@
 .classpath
 .project
 .settings/
+
+.bloop/
+.bsp/
+.idea/
+.metals/
+.vscode/
+target/
+.gradle/
+build/
