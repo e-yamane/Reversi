@@ -4,10 +4,9 @@ import java.awt.Point
 
 import reversi.Board
 import reversi.BoardState
-import reversi.Player
 import reversi.Reversi
 
-class SimpleScalaPlayer(name: String) extends Player(name) {
+class SimpleScalaPlayer(name: String) extends GreatChampion(name) {
   override def nextPoint(board: Board, state: BoardState): Point = {
     board.getAvailablePoints(state).get(0)
   }
@@ -15,8 +14,7 @@ class SimpleScalaPlayer(name: String) extends Player(name) {
 
 object SimpleScalaPlayer {
   def main(args: Array[String]): Unit = {
-    val r = new Reversi(new SimpleScalaPlayer("黒"), new SimpleScalaPlayer("黒"))
+    val r = new Reversi(new SimpleScalaPlayer("黒"), new Champion("白"))
     r.fight()
   }
 }
-
