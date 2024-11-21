@@ -9,47 +9,26 @@ class GreatChampion(name: String) extends Player(name){
 
   private val boardPoints: Array[Array[Int]] = Array(Array(10, -(4), 5, 0, 0, 5, -(4), 10), Array(-(4), -(5), 5, 5, 5, 5, -(5), -(4)), Array(5, 5, 9, 0, 0, 9, 5, 5), Array(0, 5, 0, 0, 0, 0, 5, 0), Array(0, 5, 0, 0, 0, 0, 5, 0), Array(5, 5, 9, 5, 5, 9, 5, 5), Array(-(4), -(5), 0, 0, 0, 0, -(5), -(4)), Array(10, -(4), 5, 0, 0, 5, -(4), 10))
 
-  private var step: Int = 1
-
   override def nextPoint(board: Board, state: BoardState): Point = {
-    System.out.println(step + "目")
-    val nextPoints = board.getAvailablePoints(state)
-    var beforeCount: Int = 100
-    var bestPoint: Point = nextPoints.get(0)
-    for (p <- nextPoints.asScala) {
-      val stubBoard: Board = board.clone
-      stubBoard.put(p, state)
-      if (step > 6) {
-        val count: Int = stubBoard.getAvailablePoints(state.reverse).size
-        var skip = false
-        if (beforeCount > count) {
-          beforeCount = count
-          if (getAxisPoint(p.x, p.y) < 0) {
-            skip = true
-          } else {
-            bestPoint = p
-          }
-        }
-        if (!skip && beforeCount == count) {
-          bestPoint = selectPoint(bestPoint, p)
-        }
-      } else {
-        bestPoint = selectPoint(bestPoint, p)
-      }
-    }
-    step += 1
-    bestPoint
+    hoge(board, state, 8)
   }
 
-  private def selectPoint(bestPoint: Point, p: Point): Point = {
-    val p1: Int = getAxisPoint(bestPoint.x, bestPoint.y)
-    val p2: Int = getAxisPoint(p.x, p.y)
-    if (p1 > p2) {
-      bestPoint
+  private def hoge(board: Board, state: BoardState, depth: Int): Point = {
+    def walk(board: Board, state: BoardState, depth: Int): (Point, Int) = {
+      // その状態の中で一番いい状態を返したい
+      val points = board.getAvailablePoints(state).asScala.toList
+      points.map {p =>
+        // そのポイントを選んだ時に一番いい状態を返したい
+        if (depth == 0) {
+          (p, getAxisPoint(p.x, p.y))
+        } else {
+          val stubBoard: Board = board.clone
+          stubBoard.put(p, state)
+          p -> walk(stubBoard, state.reverse, depth - 1)._2
+      }
+      }.reduceLeft((a, b) => if (a._2 > b._2) a else b)
     }
-    else {
-      p
-    }
+    walk(board, state, depth)._1
   }
 
   def getAxisPoint(x: Int, y: Int): Int = {

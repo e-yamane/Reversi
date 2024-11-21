@@ -14,8 +14,7 @@ class SimpleScalaPlayer(name: String) extends GreatChampion(name) {
 
 object SimpleScalaPlayer {
   def main(args: Array[String]): Unit = {
-    val r = new Reversi(new SimpleScalaPlayer("黒"), new SimpleScalaPlayer("黒"))
+    val r = new Reversi(new SimpleScalaPlayer("黒"), new Champion("白"))
     r.fight()
   }
 }
-
