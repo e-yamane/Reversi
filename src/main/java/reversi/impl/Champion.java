@@ -7,6 +7,7 @@ import reversi.Board;
 import reversi.BoardState;
 import reversi.Player;
 
+
 public class Champion extends Player {
 
 	public Champion(String name) {
